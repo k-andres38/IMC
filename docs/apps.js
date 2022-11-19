@@ -1,10 +1,12 @@
 const formulario=document.querySelector('#formulario');
 const dni=document.querySelector('.dni');
 const nombre=document.querySelector('.nombre');
+const parrafo=document.querySelector('.parrafo');
 const edad=document.querySelector('.edad');
 const peso=document.querySelector('.peso');
 const mayor=document.querySelector('.mayor');
 const sugerencia=document.querySelector('.sugerencia');
+
 
 let personas=[];
 
@@ -82,8 +84,12 @@ class Persona {
     toString(objeto){
 
         nombre.textContent=objeto.getNombre
-        edad.textContent=objeto.getEdad
+   
+        
         peso.textContent=objeto.getPeso
+        if(!objeto.getEdad.trim()) return parrafo.classList.add('d-none');
+        parrafo.classList.remove('d-none')
+        edad.textContent=objeto.getEdad
        
     }
 
@@ -98,6 +104,7 @@ class Persona {
 formulario.addEventListener('submit',(e)=>{
     e.preventDefault();
     document.querySelector('.cuidado').classList.add('d-none')
+   
     const data= new FormData(formulario);
     const [nombre,edad,dni,altura,peso,opcion]=[...data.values()];
     //console.log(nombre,edad,dni,opcion);
